@@ -391,12 +391,14 @@ Pick a shipping rate
   }
 ```
 
-### accept(shipment_digest, [options,] callback)
+### accept(data, [options,] callback)
 
 Purchase a shipping label and tracking number
 
 ```js
-  shipment_digest = 'SHIPMENTDIGEST'; // big data string
+    data = {
+      shipment_digest: 'SHIPMENTDIGEST' // big data string
+    }
 ```
 
 ### pickup(pickup_creation_data, callback)
