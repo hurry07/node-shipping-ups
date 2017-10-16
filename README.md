@@ -408,7 +408,7 @@ Purchase a shipping label and tracking number
     rate_pickup_indicator: 'Y',
     shipper_account: 'ABC123',
     pickup_date: '20141223',
-    eariest_time_ready: '0800',
+    earliest_time_ready: '0800',
     latest_time_ready: '1200',
     pickup_address: {
       company_name: 'Pat Stewart',
