@@ -1,14 +1,14 @@
 'use strict';
 
-var upsAPI = require('../lib/index');
-var util = require('util');
-var fs = require('fs');
+const upsAPI = require('../lib/index');
+const util = require('util');
+const fs = require('fs');
 
-var ups = new upsAPI({
+const ups = new upsAPI({
   environment: 'sandbox', // or live
-  access_key: '4D5540E276351438',
-  username: 'brasred.ups',
-  password: 'Sucesso2019'
+  access_key: 'YOUR_ACCESS_KEY',
+  username: 'YOUR_USER_NAME',
+  password: 'YOUR_PASSWORD'
 });
 
 ups.time_in_transit({
