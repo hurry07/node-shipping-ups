@@ -6,9 +6,9 @@ var fs = require('fs');
 
 var ups = new upsAPI({
   environment: 'sandbox', // or live
-  access_key: 'UPSACCESSKEY',
-  username: 'UPSUSERNAME',
-  password: 'UPSPASSWORD'
+  access_key: '4D5540E276351438',
+  username: 'brasred.ups',
+  password: 'Sucesso2019'
 });
 
 ups.time_in_transit({
@@ -24,12 +24,12 @@ ups.time_in_transit({
     postal_code: '28205',
     country_code: 'US'
   }
-}, function(err, res) {
-  if(err) {
+}, function (err, res) {
+  if (err) {
     console.log(err);
   }
 
-  console.log(util.inspect(res, {depth: null}));
+  console.log(util.inspect(res, { depth: null }));
 });
 
 ups.address_validation({
@@ -39,12 +39,12 @@ ups.address_validation({
   state_code: 'NC',
   postal_code: '28205',
   country_code: 'US'
-}, function(err, res) {
-  if(err) {
+}, function (err, res) {
+  if (err) {
     console.log(err);
   }
 
-  console.log(util.inspect(res, {depth: null}));
+  console.log(util.inspect(res, { depth: null }));
 });
 
 ups.rates({
@@ -74,20 +74,20 @@ ups.rates({
       weight: 10
     }
   ]
-}, function(err, res) {
-  if(err) {
+}, function (err, res) {
+  if (err) {
     return console.log(err);
   }
-  console.log(util.inspect(res, {depth: null}));
+  console.log(util.inspect(res, { depth: null }));
   // should return an array of rates
 });
 
-ups.track('1ZY291F40369744809', function(err, res) {
-  if(err) {
+ups.track('1ZY291F40369744809', function (err, res) {
+  if (err) {
     return console.log(err);
   }
 
-  console.log(util.inspect(res, {depth: null}));
+  console.log(util.inspect(res, { depth: null }));
 });
 
 ups.confirm({
@@ -118,34 +118,42 @@ ups.confirm({
       weight: 10
     }
   ]
-}, {transaction_id: 'ABC123', extra_params: {Shipment: {ShipmentServiceOptions: {Notification: {
-  NotificationCode: '2',
-  EMailMessage: {
-    EMailAddress: 'hello@myemailaddress.com',
-    UndeliverableEMailAddress: 'noreply@myemailaddress.com',
-    FromEMailAddress: 'from@myemailaddress.com',
-    Memo: 'We thought you might like to know',
-    Subject: 'Your package has shipped from our store'
+}, {
+  transaction_id: 'ABC123', extra_params: {
+    Shipment: {
+      ShipmentServiceOptions: {
+        Notification: {
+          NotificationCode: '2',
+          EMailMessage: {
+            EMailAddress: 'hello@myemailaddress.com',
+            UndeliverableEMailAddress: 'noreply@myemailaddress.com',
+            FromEMailAddress: 'from@myemailaddress.com',
+            Memo: 'We thought you might like to know',
+            Subject: 'Your package has shipped from our store'
+          }
+        }
+      }
+    }
   }
-}}}}}, function(err, res) {
-  if(err) {
+}, function (err, res) {
+  if (err) {
     return console.log(err);
   }
 
   //console.log(util.inspect(res, {depth: null}));
-  ups.accept(res.ShipmentDigest, function(err, res) {
-    if(err) {
+  ups.accept(res.ShipmentDigest, function (err, res) {
+    if (err) {
       return console.log(err);
     }
 
-    fs.writeFile('./label.gif', new Buffer(res.ShipmentResults.PackageResults.LabelImage.GraphicImage, "base64"), function(err) {
-      ups.void(res.ShipmentResults.ShipmentIdentificationNumber, function(err, res) {
+    fs.writeFile('./label.gif', new Buffer(res.ShipmentResults.PackageResults.LabelImage.GraphicImage, "base64"), function (err) {
+      ups.void(res.ShipmentResults.ShipmentIdentificationNumber, function (err, res) {
         // {shipment_identification_number: '1Z648616E192760718'}
-        if(err) {
+        if (err) {
           return console.log(err);
         }
 
-        console.log(util.inspect(res, {depth: null}));
+        console.log(util.inspect(res, { depth: null }));
       })
     });
   });
