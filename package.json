@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "node.extend": "^1.1.5",
-    "soap": "^0.9.1",
+    "soap": "^0.31.0",
     "xml2js": "^0.4.15",
-    "xmlbuilder": "^2.6.4"
+    "xmlbuilder": "^15.1.1"
   }
 }
